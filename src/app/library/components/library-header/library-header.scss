@@ -1,0 +1,14 @@
+@use 'styles/variables.scss';
+
+.library-header {
+  padding: 30px 0;
+  border-bottom: 1px solid variables.$light-grey;
+
+  h1 {
+    text-box: trim-both cap text;
+  }
+
+  span {
+    text-box: trim-both cap alphabetic;
+  }
+}

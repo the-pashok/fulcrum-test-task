@@ -1,0 +1,6 @@
+@use 'styles/variables.scss';
+
+.library-search {
+  padding: 15px 0;
+  border-bottom: 1px solid variables.$light-grey;
+}

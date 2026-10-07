@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+
+@use '@fontsource-variable/roboto';
+
+@use './styles/button.scss';
+@use './styles/table.scss';
+@use './styles/input.scss';
+@use './styles/reset.scss';
+@use './styles/grid.scss';
+
+body {
+  font-family: 'Roboto Variable', sans-serif;
+}

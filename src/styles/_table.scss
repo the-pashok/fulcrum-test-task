@@ -1,0 +1,48 @@
+@use './variables.scss';
+
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+  vertical-align: top;
+  border-spacing: 2px;
+
+  th, td {
+    padding: 1rem;
+    background-color: transparent;
+    border-bottom-width: 0;
+    text-align: left;
+  }
+
+  &.align-middle {
+    th, td {
+      vertical-align: middle;
+    }
+  }
+
+  &.table-bordered {
+    th, td {
+      border-width: 0;
+    }
+
+    > :not(caption) > * {
+      border-width: 1px 0;
+
+      > * {
+        border-width: 0 1px;
+      }
+    }
+
+    thead th:hover:not(:nth-last-child(-n + 2)) {
+      background-color: variables.$table-hover-bg;
+      cursor: pointer;
+    }
+
+    tbody tr:nth-child(odd) {
+      background-color: variables.$table-striped-bg;
+    }
+
+    tbody tr:hover {
+      background-color: variables.$table-hover-bg;
+    }
+  }
+}
