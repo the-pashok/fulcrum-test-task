@@ -4,7 +4,7 @@
   width: 100%;
   margin-bottom: 1rem;
   vertical-align: top;
-  border-spacing: 2px;
+  border-spacing: 1px;
 
   th, td {
     padding: 1rem;
@@ -32,17 +32,14 @@
       }
     }
 
-    thead th:hover:not(:nth-last-child(-n + 2)) {
-      background-color: variables.$table-hover-bg;
-      cursor: pointer;
-    }
-
-    tbody tr:nth-child(odd) {
+    thead tr,
+    tbody tr {
       background-color: variables.$table-striped-bg;
     }
 
-    tbody tr:hover {
+    thead th:hover:not(:nth-last-child(-n + 2)) {
       background-color: variables.$table-hover-bg;
+      cursor: pointer;
     }
   }
 }

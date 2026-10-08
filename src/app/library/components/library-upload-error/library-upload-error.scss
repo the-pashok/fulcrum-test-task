@@ -1,0 +1,20 @@
+@use 'styles/variables.scss';
+
+.library-upload-error {
+  margin: 30px 0;
+  font-size: variables.$font-size-1;
+  font-weight: variables.$font-weight-medium;
+  background-color: variables.$light-danger;
+  color: variables.$danger;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+}
+
+.dismiss {
+  cursor: pointer;
+  transition: color .15s ease-in-out;
+
+  &:hover {
+    color: variables.$danger-hover;
+  }
+}

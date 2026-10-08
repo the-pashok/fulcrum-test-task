@@ -1,0 +1,32 @@
+@use 'styles/variables.scss';
+
+.library-empty {
+  padding: 80px 0;
+  text-align: center;
+
+  h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    margin-bottom: 1.5rem;
+    color: variables.$secondary;
+  }
+
+  pre {
+    display: inline-block;
+    max-width: 100%;
+    padding: 1.5rem 2rem;
+    overflow-x: auto;
+    text-align: left;
+    background-color: variables.$code-bg;
+    border-radius: 8px;
+  }
+
+  code {
+    font-family: variables.$font-family-monospace;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: variables.$dark;
+  }
+}

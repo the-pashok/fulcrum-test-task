@@ -1,6 +1,9 @@
 @use './variables.scss';
 
 .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   height: 40px;
   padding: 0 1rem;
   border-radius: 5px;
@@ -10,6 +13,7 @@
   font-weight: variables.$font-weight-medium;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   text-align: center;
+  text-decoration: none;
   vertical-align: middle;
   user-select: none;
   cursor: pointer;
@@ -70,6 +74,13 @@
         color: variables.$white;
         background-color: variables.$secondary;
         border-color: variables.$secondary;
+      }
+
+      &:disabled {
+        color: variables.$secondary-text-disabled;
+        border-color: variables.$secondary-border-disabled;
+        background-color: variables.$secondary-disabled;
+        cursor: not-allowed;
       }
     }
   }

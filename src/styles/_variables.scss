@@ -1,4 +1,5 @@
 $danger: #dc3545;
+$light-danger: #ffc8d0;
 $danger-hover: #b52a37;
 $primary: #0d6efd;
 $primary-hover: #0a58ca;
@@ -6,13 +7,19 @@ $primary-active: #0a53be;
 $secondary: #6c757d;
 $secondary-hover: #5c636a;
 $secondary-active: #565e64;
+$secondary-disabled: #f8f9fa;
+$secondary-border-disabled: #dee2e6;
+$secondary-text-disabled: #adb5bd;
 $light-blue: #86b7fe;
 $light-grey: #dddddd;
 $dark: #151515;
 $white: #ffffff;
+$code-bg: #f1f1f1;
 $table-striped-bg: rgba(0, 0, 0, 0.05);
 $table-hover-bg: rgba(0, 0, 0, 0.075);
 
 $font-size-1: 1rem;
 
 $font-weight-medium: 500;
+
+$font-family-monospace: 'SF Mono', monospace;

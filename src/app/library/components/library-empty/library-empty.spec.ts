@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { LibraryPage } from './library-page';
+import { LibraryEmpty } from './library-empty';
 
-describe('LibraryPage', () => {
-  let component: LibraryPage;
-  let fixture: ComponentFixture<LibraryPage>;
+describe('LibraryEmpty', () => {
+  let component: LibraryEmpty;
+  let fixture: ComponentFixture<LibraryEmpty>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LibraryPage],
+      imports: [LibraryEmpty],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(LibraryPage);
+    fixture = TestBed.createComponent(LibraryEmpty);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

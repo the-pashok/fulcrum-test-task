@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
-import { LibraryPage } from './library/library-page';
+import { Library } from './library/library';
 
 @Component({
   selector: 'app-root',
   styleUrl: './app.scss',
   templateUrl: './app.html',
-  imports: [LibraryPage],
+  imports: [Library],
 })
 export class App {}
