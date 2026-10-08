@@ -1,12 +1,39 @@
-<app-library-header></app-library-header>
+<app-library-header
+  [books]="books()"
+  (openAddBookModal)="isBookModalVisible.set(true)"
+  (loadBooksFromXML)="loadBooksFromXML($event)"
+></app-library-header>
 
-@if (isErrorVisible()) {
-  <app-library-upload-error></app-library-upload-error>
+@if (errorText()) {
+  <app-library-upload-error
+    [errorText]="errorText()"
+    (dismissError)="dismissError()"
+  ></app-library-upload-error>
 }
 
 @if (books().length > 0) {
-  <app-library-search></app-library-search>
-  <app-library-table></app-library-table>
+  <app-library-search
+    [(search)]="search"
+  ></app-library-search>
+  @if (filteredBooks().length > 0) {
+    <app-library-table
+      [books]="filteredBooks()"
+      (editBook)="startEditBook($event)"
+      (deleteBook)="deleteBook($event)"
+    ></app-library-table>
+  } @else {
+    <app-library-search-empty
+      [search]="search()"
+    ></app-library-search-empty>
+  }
 } @else {
   <app-library-empty></app-library-empty>
+}
+
+@if (isBookModalVisible()) {
+  <app-book-modal
+    [book]="selectedBook()"
+    (closed)="closeBookModal()"
+    (saveBook)="saveBook($event)"
+  ></app-book-modal>
 }

@@ -32,8 +32,8 @@
       }
     }
 
-    thead tr,
-    tbody tr {
+    thead th:not(:nth-last-child(-n + 2)),
+    tbody td {
       background-color: variables.$table-striped-bg;
     }
 

@@ -5,9 +5,15 @@
 @use './styles/button.scss';
 @use './styles/table.scss';
 @use './styles/input.scss';
+@use './styles/modal.scss';
 @use './styles/reset.scss';
 @use './styles/grid.scss';
 
 body {
   font-family: 'Roboto Variable', sans-serif;
+}
+
+// Disable body scroll when modal is visible
+body:has(dialog[open]) {
+  overflow: hidden;
 }

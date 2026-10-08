@@ -1,0 +1,51 @@
+<dialog #dialog class="modal" (close)="closed.emit()" (click)="onBackdropClick($event)">
+  <div class="modal-body">
+    <h2 class="mb-3">{{ modalTitle() }}</h2>
+
+    <form [formGroup]="formGroup" (ngSubmit)="submit()">
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" class="form-control" id="title" name="title" formControlName="title">
+        @if (formGroup.get('title')?.invalid && formGroup.get('title')?.touched) {
+          <div class="form-control-error">
+            <span>This field is required</span>
+          </div>
+        }
+      </div>
+
+      <div class="mb-3">
+        <label for="author" class="form-label">Author</label>
+        <input type="text" class="form-control" id="author" name="author" formControlName="author">
+        @if (formGroup.get('author')?.invalid && formGroup.get('author')?.touched) {
+          <div class="form-control-error">
+            <span>This field is required</span>
+          </div>
+        }
+      </div>
+
+      <div class="mb-3">
+        <label for="pages" class="form-label">Pages</label>
+        <input type="number" class="form-control" id="pages" name="pages" formControlName="pages">
+        @if (formGroup.get('pages')?.invalid && formGroup.get('pages')?.touched) {
+          <div class="form-control-error">
+            <span>This field is required</span>
+          </div>
+        }
+        @if (formGroup.get('pages')?.hasError('min') && formGroup.get('pages')?.touched) {
+          <div class="form-control-error">
+            <span>Pages value must be greater then 0</span>
+          </div>
+        }
+      </div>
+
+      <div class="d-flex justify-content-end gap-2">
+        <button type="button" class="btn btn-secondary btn-outline" (click)="cancel()">
+          Cancel
+        </button>
+        <button type="submit" class="btn btn-primary" [disabled]="formGroup.invalid">
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
+</dialog>

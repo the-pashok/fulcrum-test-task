@@ -27,36 +27,23 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>Alpha Dashboard</td>
-          <td>Development</td>
-          <td>93</td>
-          <td>
-            <button type="button" class="btn btn-primary btn-link">
-              Edit
-            </button>
-          </td>
-          <td>
-            <button type="button" class="btn btn-danger btn-link">
-              Delete
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td>Beta Landing Page</td>
-          <td>Design</td>
-          <td>198</td>
-          <td>
-            <button type="button" class="btn btn-primary btn-link">
-              Edit
-            </button>
-          </td>
-          <td>
-            <button type="button" class="btn btn-danger btn-link">
-              Delete
-            </button>
-          </td>
-        </tr>
+          @for (book of books(); track book.uuid) {
+            <tr>
+              <td>{{ book.title }}</td>
+              <td>{{ book.author }}</td>
+              <td>{{ book.pages }}</td>
+              <td>
+                <button type="button" class="btn btn-primary btn-link" (click)="editBook.emit(book.uuid)">
+                  Edit
+                </button>
+              </td>
+              <td>
+                <button type="button" class="btn btn-danger btn-link" (click)="deleteBook.emit(book.uuid)">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          }
         </tbody>
       </table>
     </div>

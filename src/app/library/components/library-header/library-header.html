@@ -4,7 +4,7 @@
       <div class="col">
         <div class="d-flex align-items-center gap-2">
           <h1>Library</h1>
-          <span>0 books</span>
+          <span>{{ books().length }} books</span>
         </div>
       </div>
       <div class="col">
@@ -22,11 +22,18 @@
           <button
             type="button"
             class="btn btn-secondary btn-outline"
-            [disabled]="true"
+            [disabled]="books().length === 0"
+            (click)="onSaveXmlClick()"
           >
             Save XML
           </button>
-          <button type="button" class="btn btn-primary">Add book</button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="openAddBookModal.emit()"
+          >
+            Add book
+          </button>
         </div>
       </div>
     </div>
