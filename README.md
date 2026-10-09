@@ -1,59 +1,81 @@
-# FulcrumTestTask
+# Library
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.1.
+A single-screen book library built with Angular 22. Books are loaded from an XML file, edited in
+the browser, and exported back to XML.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- **Load XML**
+- **Save XML**
+- **Add / Edit / Delete**
+- **Search**
+- **Sort**
 
-```bash
-ng serve
+## XML format
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<library>
+  <book>
+    <title>The Hobbit</title>
+    <author>J. R. R. Tolkien</author>
+    <pages>310</pages>
+  </book>
+</library>
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Getting started
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Install dependencies and start the dev server:
 
 ```bash
-ng generate component component-name
+npm install
 ```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
 ```bash
-ng generate --help
+npm start
 ```
 
-## Building
+The app runs at `http://localhost:4200/` and reloads on source changes.
 
-To build the project run:
+Other commands:
 
 ```bash
-ng build
+npm run build
 ```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
 
 ```bash
-ng test
+npm test
 ```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
 
 ```bash
-ng e2e
+npm run lint
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Project structure
 
-## Additional Resources
+```
+src/app/
+  library/
+    components/ - feature components (header, table, search, modal, empty/error states)
+    interfaces/ - Book, Sort, parser result types
+    services/ - XML import and export
+    library.ts - container: owns state, wires children together
+  app.ts - shell
+src/styles/ - SCSS primitives (buttons, grid, table, inputs)
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+`Library` is the only stateful component. Everything under `components/` receives data through inputs.
+
+## Design decisions
+
+**No router.** There is one screen, so it becomes useless with a second screen.
+
+**State lives in the `Library` container.**
+
+**Native `<dialog>` instead of a UI library.** The project has no runtime UI dependencies.
+
+**UUID are runtime-only.** Each book gets a `random uuid` identifier used for `@for`
+tracking and for edit/delete lookups.
+
+**Nothing is persisted** - reloading the page clears the library.
