@@ -4,22 +4,22 @@
       <table class="table table-bordered">
         <thead class="table-dark">
         <tr>
-          <th scope="col">
+          <th scope="col" (click)="sortChange.emit('title')">
             <div class="d-flex justify-content-between">
               <span>Title</span>
-              <span>&#8593;</span>
+              <span>{{ sortIcon('title') }}</span>
             </div>
           </th>
-          <th scope="col">
+          <th scope="col" (click)="sortChange.emit('author')">
             <div class="d-flex justify-content-between">
               <span>Author</span>
-              <span>&#8595;</span>
+              <span>{{ sortIcon('author') }}</span>
             </div>
           </th>
-          <th scope="col">
+          <th scope="col" (click)="sortChange.emit('pages')">
             <div class="d-flex justify-content-between">
               <span>Pages</span>
-              <span>&#8595;</span>
+              <span>{{ sortIcon('pages') }}</span>
             </div>
           </th>
           <th></th>

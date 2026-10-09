@@ -8,6 +8,12 @@ const XML_FILE_START = '<?xml version="1.0" encoding="UTF-8"?>';
 
 @Service()
 export class ParseXmlService {
+  /**
+   * Parsing an imported XML file. Returns an object with error or parsed xml document.
+   *
+   * @param {string} xml
+   * @private
+   */
   private importXML(xml: string): ParseXmlResult {
     const parser = new DOMParser();
 
@@ -28,11 +34,16 @@ export class ParseXmlService {
     };
   }
 
+  /**
+   * Exports a XML document. Prepares a document with elements.
+   *
+   * @param {Book[]} books
+   */
   public exportXML(books: Book[]): string {
-    const xmlDocument: XMLDocument = document.implementation.createDocument(null, 'books');
+    const xmlDocument: XMLDocument = document.implementation.createDocument(null, 'library');
 
     for (const book of books) {
-      const bookElement: Element = document.createElement('book');
+      const bookElement: Element = xmlDocument.createElement('book');
 
       bookElement.appendChild(this.createTextElement(xmlDocument, 'title', book.title));
       bookElement.appendChild(this.createTextElement(xmlDocument, 'author', book.author));
@@ -46,7 +57,12 @@ export class ParseXmlService {
     return `${XML_FILE_START}\n${xml}`;
   }
 
-  public getParsedBooks(xml: string, fileName: string): ParsedBooksResult {
+  /**
+   * Returns books array from parsed xml document.
+   *
+   * @param {string} xml
+   */
+  public getParsedBooks(xml: string): ParsedBooksResult {
     const parseXmlResult: ParseXmlResult = this.importXML(xml);
 
     if (!parseXmlResult.ok) {
@@ -78,6 +94,15 @@ export class ParseXmlService {
     };
   }
 
+  /**
+   * Helper method for creating an element instead of code duplicates.
+   * textContent is used to display symbols like "&$ etc." correctly.
+   *
+   * @param {Document} xmlDocument
+   * @param {string} tagName
+   * @param {string} textContent
+   * @private
+   */
   private createTextElement(xmlDocument: Document, tagName: string, textContent: string): Element {
     const element: HTMLElement = xmlDocument.createElement(tagName);
 

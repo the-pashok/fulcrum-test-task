@@ -4,3 +4,5 @@ export interface Book {
   author: string;
   pages: number;
 }
+
+export type BookFormValue = Omit<Book, 'uuid'>;

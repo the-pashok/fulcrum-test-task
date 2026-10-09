@@ -12,36 +12,61 @@ import { Book } from '../../interfaces/book';
 export class LibraryHeader {
   public readonly books: InputSignal<Book[]> = input<Book[]>([]);
 
-  protected readonly openAddBookModal: OutputEmitterRef<void> = output<void>();
+  public readonly openAddBookModal: OutputEmitterRef<void> = output<void>();
 
-  protected readonly loadBooksFromXML: OutputEmitterRef<ParsedBooksResult> = output<ParsedBooksResult>();
+  public readonly loadBooksFromXML: OutputEmitterRef<ParsedBooksResult> = output<ParsedBooksResult>();
 
   private readonly parseXmlService: ParseXmlService = inject(ParseXmlService);
 
+  /**
+   * Method is called when user clicks on file upload button: Upload XML.
+   *
+   * @param {Event} event
+   * @protected
+   */
   protected onFileSelected(event: Event): void {
-    const input = event.target as HTMLInputElement;
+    const fileInput = event.target as HTMLInputElement;
 
-    if (!input.files || input.files.length === 0) {
+    if (!fileInput.files || fileInput.files.length === 0) {
       return;
     }
 
     const reader = new FileReader();
 
-    const file: File = input.files[0];
+    const file: File = fileInput.files[0];
 
     reader.onload = (event: ProgressEvent<FileReader>): void => {
       const xml = event.target?.result as string;
 
       if (xml) {
-        const result: ParsedBooksResult = this.parseXmlService.getParsedBooks(xml, file.name);
+        const result: ParsedBooksResult = this.parseXmlService.getParsedBooks(xml);
 
         this.loadBooksFromXML.emit(result);
       }
+
+      // reset file input
+      fileInput.value = '';
     }
+
+    // Deteck errors
+    reader.onerror = (): void => {
+      this.loadBooksFromXML.emit({
+        ok: false,
+        error: `Couldn't read ${file.name}`,
+      });
+
+      // reset file input
+      fileInput.value = '';
+    };
 
     reader.readAsText(file);
   }
 
+  /**
+   * Save XML document and generate a link for triggering download.
+   *
+   * @protected
+   */
   protected onSaveXmlClick(): void {
     const xml: string = this.parseXmlService.exportXML(this.books());
     const blob: Blob = new Blob([xml], { type: 'application/xml;charset=utf-8' });

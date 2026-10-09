@@ -17,7 +17,9 @@
   ></app-library-search>
   @if (filteredBooks().length > 0) {
     <app-library-table
-      [books]="filteredBooks()"
+      [books]="sortedBooks()"
+      [sort]="sort()"
+      (sortChange)="changeSort($event)"
       (editBook)="startEditBook($event)"
       (deleteBook)="deleteBook($event)"
     ></app-library-table>
