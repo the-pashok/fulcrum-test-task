@@ -176,8 +176,8 @@ export class Library {
     } else {
       // Adding
       this.books.update((books: Book[]): Book[] => [
-        { ...bookValue, uuid: crypto.randomUUID() },
         ...books,
+        { ...bookValue, uuid: crypto.randomUUID() },
       ]);
     }
 

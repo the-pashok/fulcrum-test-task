@@ -79,3 +79,9 @@ src/styles/ - SCSS primitives (buttons, grid, table, inputs)
 tracking and for edit/delete lookups.
 
 **Nothing is persisted** - reloading the page clears the library.
+
+## Covered with tests
+
+**library.spec.ts** - Add book / Edit book / Remove book / Sorting / Search
+
+**parse-xml.spec.ts** - Export XML File 

@@ -2,11 +2,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BookModal } from './book-modal';
 
-describe('BookModal', () => {
+describe('BookModal', (): void => {
   let component: BookModal;
   let fixture: ComponentFixture<BookModal>;
 
-  beforeEach(async () => {
+  beforeEach(async (): Promise<void> => {
+    HTMLDialogElement.prototype.showModal = vi.fn();
+
     await TestBed.configureTestingModule({
       imports: [BookModal],
     }).compileComponents();
@@ -16,7 +18,7 @@ describe('BookModal', () => {
     await fixture.whenStable();
   });
 
-  it('should create', () => {
+  it('should create', (): void => {
     expect(component).toBeTruthy();
   });
 });
